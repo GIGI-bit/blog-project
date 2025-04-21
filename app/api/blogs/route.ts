@@ -4,7 +4,7 @@ export async function GET() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("blogs")
-    .select("*")
+    .select("*,authors(email)")
     .order("created_at", { ascending: false });
 
   if (error) {

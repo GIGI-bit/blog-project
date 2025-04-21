@@ -5,8 +5,10 @@ type ContactTextProps = {
 
 const ContactText = ({ forContact, children }: ContactTextProps) => {
   return (
-    <p className="text-gray-600">
-      <span className="text-black font-medium">{forContact}:</span>
+    <p className="text-gray-600 dark:text-[#97989F]">
+      <span className="text-black font-medium dark:text-white">
+        {forContact}:
+      </span>
       {children}
     </p>
   );

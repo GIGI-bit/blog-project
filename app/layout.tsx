@@ -58,16 +58,28 @@ export default function RootLayout({
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Link className="text-gray-600" href="/">
+                    <Link
+                      className="text-gray-600 dark:text-[#97989F]"
+                      href="/"
+                    >
                       Home
                     </Link>
-                    <Link className="text-gray-600" href="/">
+                    <Link
+                      className="text-gray-600 dark:text-[#97989F]"
+                      href="/"
+                    >
                       Write a Blog
                     </Link>
-                    <Link className="text-gray-600" href="/">
+                    <Link
+                      className="text-gray-600 dark:text-[#97989F]"
+                      href="/"
+                    >
                       My Blogs
                     </Link>
-                    <Link className="text-gray-600" href="/">
+                    <Link
+                      className="text-gray-600 dark:text-[#97989F]"
+                      href="/"
+                    >
                       Contact
                     </Link>
                   </div>
@@ -76,16 +88,16 @@ export default function RootLayout({
                   <p>Sign IN</p>
                 </div>
               </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
+              <div className="flex flex-col gap-20 w-full px-[18%]">
                 {children}
               </div>
 
-              <footer className="w-full flex flex-col items-center justify-center mx-auto text-center text-xs gap-8 py-1 bg-gray-100">
+              <footer className="w-full flex flex-col items-center justify-center mx-auto text-center text-xs gap-8 py-1 bg-gray-100 dark:bg-[#242535]">
                 <div className="w-full flex  justify-around py-10 mx-auto">
                   <div>
                     <div className="flex flex-col gap-4">
                       <h3 className="text-left">About</h3>
-                      <p className="text-gray-500 w-[14vw] text-left">
+                      <p className="text-gray-500 w-[14vw] text-left dark:text-[#97989F]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam
@@ -104,19 +116,31 @@ export default function RootLayout({
                   </div>
                   <div className="flex gap-7">
                     <div className="flex flex-col gap-2 text-left">
-                      <h3 className="text-black font-medium mb-2">
+                      <h3 className="text-black font-medium mb-2 dark:text-white">
                         Quick Link
                       </h3>
-                      <Link className="text-gray-600" href="/">
+                      <Link
+                        className="text-gray-600 dark:text-[#BABABF]"
+                        href="/"
+                      >
                         Home
                       </Link>
-                      <Link className="text-gray-600" href="/">
+                      <Link
+                        className="text-gray-600 dark:text-[#BABABF]"
+                        href="/"
+                      >
                         Write a Blog
                       </Link>
-                      <Link className="text-gray-600" href="/">
+                      <Link
+                        className="text-gray-600  dark:text-[#BABABF]"
+                        href="/"
+                      >
                         My Blogs
                       </Link>
-                      <Link className="text-gray-600" href="/">
+                      <Link
+                        className="text-gray-600 dark:text-[#BABABF]"
+                        href="/"
+                      >
                         Contact
                       </Link>
                     </div>
@@ -147,15 +171,24 @@ export default function RootLayout({
                   </div>
                   <div>
                     <div className="flex gap-6">
-                      <Link href="/" className="text-gray-600">
+                      <Link
+                        href="/"
+                        className="text-gray-600 dark:text-[#BABABF]"
+                      >
                         Terms of Use
                       </Link>
                       <div className="border-l border-gray-400"></div>
-                      <Link href="/" className="text-gray-600">
+                      <Link
+                        href="/"
+                        className="text-gray-600 dark:text-[#BABABF]"
+                      >
                         Privacy Policy
                       </Link>
                       <div className="border-l border-gray-400"></div>
-                      <Link href="/" className="text-gray-600">
+                      <Link
+                        href="/"
+                        className="text-gray-600 dark:text-[#BABABF]"
+                      >
                         Cookie Policy
                       </Link>
                     </div>

@@ -14,7 +14,7 @@ const CategoryList = () => {
       {categories.map((cat) => (
         <Link
           key={cat.id}
-          href={`/?category=${cat.name}`}
+          href={`?category=${cat.name}`}
           className="text-gray-600 hover:underline dark:text-[#BABABF]"
         >
           {cat.name}

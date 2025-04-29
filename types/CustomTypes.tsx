@@ -10,7 +10,11 @@ export type Blog = {
   body: string;
   thumbnail: string;
   authors: {
+    id: string;
     email: string;
+  } | null;
+  categories: {
+    name: string;
   } | null;
 };
 

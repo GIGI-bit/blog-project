@@ -14,6 +14,9 @@ import Link from "next/link";
 import "./globals.css";
 import ContactText from "@/components/typography/contact-text";
 import CategoryList from "@/components/category-list";
+import CustomLink from "@/components/custom-Link";
+import SearchedBlogs from "./blogs/[searcItem]/page";
+import SearchComponent from "@/components/search";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -66,33 +69,31 @@ export default function RootLayout({
                     </Link>
                     <Link
                       className="text-gray-600 dark:text-[#97989F]"
-                      href="/"
+                      href="/blogs/add"
                     >
                       Write a Blog
                     </Link>
+                    <CustomLink></CustomLink>
                     <Link
                       className="text-gray-600 dark:text-[#97989F]"
-                      href="/"
-                    >
-                      My Blogs
-                    </Link>
-                    <Link
-                      className="text-gray-600 dark:text-[#97989F]"
-                      href="/"
+                      href="#footer"
                     >
                       Contact
                     </Link>
                   </div>
-                  <input placeholder="Search" />
+                  <SearchComponent></SearchComponent>
                   <ThemeSwitcher></ThemeSwitcher>
-                  <p>Sign IN</p>
+                  <HeaderAuth></HeaderAuth>
                 </div>
               </nav>
               <div className="flex flex-col gap-20 w-full px-[18%]">
                 {children}
               </div>
 
-              <footer className="w-full flex flex-col items-center justify-center mx-auto text-center text-xs gap-8 py-1 bg-gray-100 dark:bg-[#242535]">
+              <footer
+                id="footer"
+                className="w-full flex flex-col items-center justify-center mx-auto text-center text-xs gap-8 py-1 bg-gray-100 dark:bg-[#242535]"
+              >
                 <div className="w-full flex  justify-around py-10 mx-auto">
                   <div>
                     <div className="flex flex-col gap-4">
@@ -127,19 +128,14 @@ export default function RootLayout({
                       </Link>
                       <Link
                         className="text-gray-600 dark:text-[#BABABF]"
-                        href="/"
+                        href="/blogs/add"
                       >
                         Write a Blog
                       </Link>
-                      <Link
-                        className="text-gray-600  dark:text-[#BABABF]"
-                        href="/"
-                      >
-                        My Blogs
-                      </Link>
+                      <CustomLink></CustomLink>
                       <Link
                         className="text-gray-600 dark:text-[#BABABF]"
-                        href="/"
+                        href="#footer"
                       >
                         Contact
                       </Link>

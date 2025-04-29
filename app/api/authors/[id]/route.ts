@@ -2,18 +2,17 @@ import { createClient } from "@/utils/supabase/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: number } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
-
+  const { params } = context;
+  const { id } = await params;
   try {
     const supabase = await createClient();
 
     const { data, error } = await supabase
       .from("blogs")
       .select("*,authors(*), categories(*)")
-      .eq("id", id)
-      .single();
+      .eq("author", id);
 
     if (error) {
       throw new Error(error.message);
@@ -33,26 +32,4 @@ export async function GET(
       status: 500,
     });
   }
-}
-
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  const supabase = await createClient();
-  const { id } = await params;
-
-  if (!id)
-    return new Response(JSON.stringify({ error: "ID is required" }), {
-      status: 400,
-    });
-
-  const { error } = await supabase.from("blogs").delete().eq("id", id);
-
-  if (error)
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-    });
-
-  return new Response(null, { status: 204 });
 }

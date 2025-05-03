@@ -5,6 +5,7 @@ import { Blog } from "@/types/CustomTypes";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DeleteButton from "@/components/delete-blog-button";
+import CustomLoader from "@/components/loader";
 
 interface AuthorDetailPageProps {
   params: { id: string };
@@ -56,7 +57,7 @@ const AuthorsBlogs = ({ params }: AuthorDetailPageProps) => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <CustomLoader></CustomLoader>;
   }
 
   if (!blogs || blogs.length === 0) {
@@ -78,7 +79,11 @@ const AuthorsBlogs = ({ params }: AuthorDetailPageProps) => {
         {blogs.map((blog: Blog) => (
           <div
             key={blog.id}
-            onClick={() => router.push(`/blogs/details/${blog.id}`)}
+            onClick={() => {
+              isHovered
+                ? router.refresh()
+                : router.push(`/blogs/details/${blog.id}`);
+            }}
             className="border relative h-[50vh] rounded-xl p-4 shadow hover:shadow-lg transition duration-300 "
             onMouseEnter={() => isCurrentUser && setIsHovered(true)}
             onMouseLeave={() => isCurrentUser && setIsHovered(false)}

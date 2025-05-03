@@ -2,12 +2,14 @@
 import { useState, useEffect } from "react";
 import { Blog } from "@/types/CustomTypes";
 import { useRouter, useParams } from "next/navigation";
+import CustomLoader from "@/components/loader";
 
 const SearchedBlogs = () => {
   const router = useRouter();
   const param = useParams();
   const searcItem = (param.searcItem ?? "") as string;
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -19,6 +21,8 @@ const SearchedBlogs = () => {
         setBlogs(data);
       } catch (err) {
         console.error("Error fetching blogs:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -26,6 +30,10 @@ const SearchedBlogs = () => {
       fetchBlogs();
     }
   }, [searcItem]);
+
+  if (loading) {
+    return <CustomLoader></CustomLoader>;
+  }
 
   return !blogs || !blogs.length ? (
     <div className="flex flex-col items-center gap-5">

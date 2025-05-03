@@ -1,4 +1,5 @@
 // import { useParams } from "next/navigation";
+import CustomLoader from "@/components/loader";
 import Link from "next/link";
 
 interface BlogDetailPageProps {
@@ -7,10 +8,14 @@ interface BlogDetailPageProps {
 
 const BlogDetail = async ({ params }: BlogDetailPageProps) => {
   const { id } = params;
-  const res = await fetch(`http://localhost:3000/api/blogs/${id}`);
-  const blog = await res.json();
-  console.log(blog);
 
+  const res = await fetch(`http://localhost:3000/api/blogs/${id}`);
+
+  if (!res.ok) {
+    return <CustomLoader></CustomLoader>;
+  }
+
+  const blog = await res.json();
   return (
     <div className="flex flex-col items-left gap-5">
       <div

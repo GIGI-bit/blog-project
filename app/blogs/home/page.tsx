@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { usePaginationStore } from "@/store/usePaginationStore";
 import { useMemo } from "react";
+import CustomLoader from "@/components/loader";
 
 const isTrustedDomain = (url: string | undefined) => {
   if (!url) return false;
@@ -17,33 +18,48 @@ const isTrustedDomain = (url: string | undefined) => {
 };
 
 export default function HomePage() {
-  const { blogs, visibleBlogsCount, setVisibleBlogsCount } =
-    usePaginationStore();
+  const { blogs, loading } = useFetchBlogs();
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const category = searchParams.get("category");
+  const page = Number(searchParams.get("page") || "1");
+  const visibleBlogsCount = Number(searchParams.get("count") || "6");
 
   const filteredBlogs = useMemo(() => {
     if (!category) return blogs;
     return blogs.filter((blog) => blog.categories?.name === category);
   }, [category, blogs]);
+
   const featuredBlog = filteredBlogs[0];
   const otherBlogs = filteredBlogs.slice(1, visibleBlogsCount);
   const isValidImage = featuredBlog
     ? isTrustedDomain(featuredBlog.thumbnail)
     : false;
 
-  useFetchBlogs();
+  const isEmpty = filteredBlogs ? filteredBlogs.length === 0 : true;
+
+  const updateQueryParam = (key: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value.toString());
+    router.push(`?${params.toString()}`);
+  };
 
   const handleShowMore = () => {
-    setVisibleBlogsCount(visibleBlogsCount + 3);
+    updateQueryParam("count", visibleBlogsCount + 3);
   };
 
   const handleShowLess = () => {
-    setVisibleBlogsCount(visibleBlogsCount - 3);
+    updateQueryParam("count", Math.max(3, visibleBlogsCount - 3));
   };
 
-  return filteredBlogs ? (
+  if (loading) {
+    return <CustomLoader></CustomLoader>;
+  }
+
+  return isEmpty ? (
+    <h2>No Blogs To display!</h2>
+  ) : filteredBlogs ? (
     <div className="w-full">
       <section className="relative  w-full h-[45vh] rounded-xl shadow-lg">
         {featuredBlog?.thumbnail ? (
@@ -75,7 +91,10 @@ export default function HomePage() {
               {featuredBlog?.categories?.name}
             </p>
           </div>
-          <h2 className="text-3xl font-bold">
+          <h2
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => router.push(`/blogs/details/${featuredBlog.id}`)}
+          >
             {featuredBlog?.title.length > 30
               ? featuredBlog?.title.slice(0, 30) + "..."
               : featuredBlog?.title}
@@ -97,7 +116,7 @@ export default function HomePage() {
           <div
             key={blog.id}
             onClick={() => router.push(`/blogs/details/${blog.id}`)}
-            className="border h-[50vh] rounded-xl p-4 shadow hover:shadow-lg transition duration-300 "
+            className="border h-[50vh] rounded-xl p-4 shadow hover:shadow-lg transition duration-300 cursor-pointer"
           >
             {blog?.thumbnail ? (
               isTrustedDomain(blog.thumbnail) ? (

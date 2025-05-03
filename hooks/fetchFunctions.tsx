@@ -1,5 +1,7 @@
 "use client";
 
+// import { useLocation } from "react-router-dom";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Category, Blog } from "@/types/CustomTypes";
 import { createClient } from "@/utils/supabase/client";
@@ -32,13 +34,15 @@ export const useFetchCategories = () => {
 };
 
 export const useFetchBlogs = () => {
-  const { currentPage, visibleBlogsCount, addBlogs } = usePaginationStore();
-
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") || "1";
   useEffect(() => {
     const getBlogs = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/blogs?page=${currentPage}`,
+          `http://localhost:3000/api/blogs?page=${page}`,
           {
             method: "GET",
             headers: {
@@ -50,14 +54,18 @@ export const useFetchBlogs = () => {
         if (!res.ok) throw new Error("Failed to fetch Blogs");
 
         const data = await res.json();
-        addBlogs(data);
+        setBlogs(data);
       } catch (err: any) {
         console.error(err.message || "Something went wrong");
+      } finally {
+        setLoading(false);
       }
     };
 
     getBlogs();
-  }, [currentPage, visibleBlogsCount, addBlogs]);
+  }, [page]);
+
+  return { blogs, loading };
 };
 
 export const useFetchBlogById = () => {

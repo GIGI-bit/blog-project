@@ -1,104 +1,61 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+📝 Blog Website
+A full-stack blog platform built with Next.js, Supabase, and Tailwind CSS — designed to support multiple users with a modern, clean interface and smooth interactions.
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+🚀 Features
+🔐 Authentication – Sign up and log in with Supabase Auth (default email/password flow)
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+✍️ Write Blogs – Registered users can create and publish their own blogs
 
-## Features
+🧹 Manage Content – Users can delete their blogs
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+🔍 Search – Find blogs by title using a live search input
 
-## Demo
+🗂️ Category Filter – Filter blogs by category
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+🧩 Pagination – Blogs are shown in chunks; "Show More" and "Show Less" buttons allow dynamic control
 
-## Deploy to Vercel
+⭐ Featured Blog – The most recent blog is displayed in a larger container as a featured post
 
-Vercel deployment will guide you through creating a Supabase account and project.
+🧱 Responsive Grid Layout – Other blogs are shown in a grid of smaller cards
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+🔁 Reusable Logic – Built with custom React hooks
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+🎨 Styling with Tailwind CSS – Responsive and utility-first styling across the app
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+🔔 User Feedback – Integrated with Toastify for real-time notifications
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+🎞️ Enhanced UX – Lottie animations used for loading states
 
-## Clone and run locally
+🛠️ Tech Stack
+Frontend: Next.js, React
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+Backend & Auth: Supabase
 
-2. Create a Next.js app using the Supabase Starter template npx command
+Styling: Tailwind CSS
 
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+UX Enhancements: Toastify, Lottie
 
-   ```bash
-   yarn create next-app --example with-supabase with-supabase-app
-   ```
+State Management: React Hooks.
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
-   ```
+📄 User Flow
+On the homepage, blogs are displayed in a grid layout.
 
-3. Use `cd` to change into the app's directory
+The most recently added blog appears as a featured blog in a larger container.
 
-   ```bash
-   cd with-supabase-app
-   ```
+Users can expand the blog list using the Show More button and collapse it with Show Less.
 
-4. Rename `.env.example` to `.env.local` and update the following:
+Unauthenticated users see a registration/login screen.
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
+Logged-in users can create and delete their own blog posts.
 
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api)
+Home Page:
+![Image](https://github.com/user-attachments/assets/8bfad5a2-2539-4f43-a466-02f3d7f31160)
+The most recently added blog is treated as a featured post and displayed in a larger container.
 
-5. You can now run the Next.js local development server:
+![Image](https://github.com/user-attachments/assets/339b694b-4927-4536-a36e-d9ab053ee0a5)
+Other blogs are displayed in smaller containers using a grid layout. Each page initially shows only a limited number of blogs. To view more, users can click the 'Show More' button. After clicking it, a 'Show Less' button appears, allowing users to collapse the view if they wish.
 
-   ```bash
-   npm run dev
-   ```
+Write a blog Page:
+![Image](https://github.com/user-attachments/assets/192d52b5-77c4-4170-bc29-34de26cec20d)
+On this page, registered users can write their own blog posts. If the user is not logged in, a registration screen is shown instead.
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
-
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
-
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
-
-## Feedback and issues
-
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
-
-## More Supabase examples
-
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
